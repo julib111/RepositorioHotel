@@ -1,15 +1,17 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-/*Creacion de la clase reserva  */
+/*Creación de la clase reserva  */
 public class Reserva {
-    private final Habitacion habitacion;
+    private  Habitacion habitacion;
     private Cliente cliente;
-    private final LocalDateTime fechaEntrada;
+    private  LocalDateTime fechaEntrada;
     private LocalDateTime fechaSalida;
 
+    public Reserva(){
+    }
 
     public Reserva (Habitacion habitacion, Cliente cliente, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         this.habitacion = habitacion;
@@ -17,7 +19,7 @@ public class Reserva {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
     }
-    /*Metodos get y set de la clase*/
+    /*Métodos get y set de la clase*/
     public Habitacion getHabitacion() {
         return habitacion; }
 
@@ -33,20 +35,20 @@ public class Reserva {
     public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida; }
 
-    /*Metodo el cual nos permite calcular el tiempo en dias, que estuvo el cliente en la habitacion*/
+    /*Método el cual nos permite calcular el tiempo en dias, que estuvo el cliente en la habitacion*/
     public int calcularTiempo() {
         Duration tiempo = Duration.between(this.fechaEntrada, this.fechaSalida);
         long dias = tiempo.toDays();
         return (int) dias;
     }
-    /*Metodo el cual nos permite calcular el precio total de la habitacion
-     tomando los dias reservados y multiplicandolos por el precio de la habitacion*/
+    /*Método el cual nos permite calcular el precio total de la habitacion
+     tomando los dias reservados y multiplicandolos por el precio de la habitación*/
 
     public double calcularPrecio(){
         int diasReservados = calcularTiempo();
         double precioHabitacion = habitacion.getPrecio();
         double precioTotal = diasReservados * precioHabitacion;
-        for(Servicio servicio : habitacion.getServicios()){
+        for(Servicio servicio : habitacion.getServicio()){
             precioTotal += servicio.calcularPrecioServicio();
         }
 

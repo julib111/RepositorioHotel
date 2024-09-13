@@ -1,8 +1,8 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.model;
 
-/*Creacion de la clase Limpieza la cual hereda de la clase Servicio e implementa dela interface Consumible*/
+/*Creación de la clase Limpieza la cual hereda de la clase Servicio e implementa dela interface Consumible*/
 
-public class Limpieza extends Servicio implements Consumible{
+public class Limpieza extends Servicio implements Consumible {
     @Override
     public double calcularPrecioServicio() {
         return 20000.0;
@@ -11,8 +11,5 @@ public class Limpieza extends Servicio implements Consumible{
     @Override
     public void consumir() {
         System.out.println("Consumiendo servicio de Limpieza");
-
-
-
     }
 }

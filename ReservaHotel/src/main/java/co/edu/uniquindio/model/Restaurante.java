@@ -1,7 +1,7 @@
-package co.edu.uniquindio;
+package co.edu.uniquindio.model;
 
 /*Creacion de la clase Restaurante la cual hereda de la clase Servicio e implementa dela interface Consumible*/
-public class Restaurante extends Servicio implements Consumible{
+public class Restaurante extends Servicio implements Consumible {
     @Override
     public double calcularPrecioServicio() {
         return 50000.0;
