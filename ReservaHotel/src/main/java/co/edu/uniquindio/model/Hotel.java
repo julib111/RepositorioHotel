@@ -1,6 +1,8 @@
 package co.edu.uniquindio.model;
 
 import co.edu.uniquindio.RepositorioHotel.services.ICrudCliente;
+import co.edu.uniquindio.servicio.IServicio;
+import com.sun.glass.ui.Clipboard;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -9,14 +11,14 @@ import java.util.LinkedList;
 
 /*Clase hotel con colecciones de habitaciones, clientes y reservas*/
 public class Hotel implements ICrudCliente {
-
     private String nombre;
 
     private final Collection<Habitacion> habitaciones = new LinkedList<>();
     private final Collection <Cliente> clientes = new LinkedList<>();
     private final Collection <Reserva> reservas  = new LinkedList<>();
+    private final servicio;
 
-    public Hotel() {
+    public Hotel(String hotelMocawaPlaza) {
     }
 
     @Override
@@ -37,6 +39,11 @@ public class Hotel implements ICrudCliente {
 
     @Override
     public boolean eliminarCliente(String dni) {
+        Cliente cliente = verificarCliente(dni);
+        if (cliente != null) {
+            clientes.remove(cliente);
+            return true;
+        }
 
         return false;
     }
@@ -48,7 +55,7 @@ public class Hotel implements ICrudCliente {
     }
 
     @Override
-    public Cliente getCliente(int id) {
+    public Cliente getCliente(String id) {
 
         return null;
     }
@@ -97,13 +104,33 @@ public class Hotel implements ICrudCliente {
     /**
      * Este método permite verificar si el numero de la habitacion ya existe
      */
-    private boolean verificarHabitacionExiste(String numero) {
+    public boolean verificarHabitacionExiste(String numero) {
         for (Habitacion habitacion : habitaciones) {
             if (habitacion.getNumero().equals(numero)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public Habitacion getHabitacion(String numero) {
+        for (Habitacion habitacion : habitaciones) {
+            if (habitacion.getNumero().equals(numero)) {
+                return habitacion;
+            }
+        }
+        return null;
+    }
+
+    public int calcularTotalClientes() {
+        int totalClientes = 0;
+
+        for (Habitacion habitacion : habitaciones) {
+            if(habitacion.getCliente() != null){
+                totalClientes++;
+            }
+        }
+        return totalClientes;
     }
 
     /**
@@ -115,11 +142,11 @@ public class Hotel implements ICrudCliente {
 
     @Override
     public String toString() {
-        return "EmpresaTransporte{ \n" +
+        return "Hotel{ \n" +
                 "nombre='" + nombre + '\'' +
-                ", \ngetClientes = " + getClientes().toString() +
-                ", \ngetHabitaciones = " + getHabitaciones().toString() +
-                ", \ngetReservas = " + getReservas().toString() +
+                ", \nClientes = " + getClientes().toString() +
+                ", \nHabitaciones = " + getHabitaciones().toString() +
+                ", \nReservas = " + getReservas().toString() +
                 '}';
     }
 
@@ -144,4 +171,9 @@ public class Hotel implements ICrudCliente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public void addReserva(Reserva reserva){
+        this.reservas.add(reserva);
+    }
+    public void addServicio(Servicio servicio){
+        this.servicio.add(servicio);
 }

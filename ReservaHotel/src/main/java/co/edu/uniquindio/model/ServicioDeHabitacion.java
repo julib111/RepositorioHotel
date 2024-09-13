@@ -4,6 +4,10 @@ package co.edu.uniquindio.model;
 public class ServicioDeHabitacion extends Servicio implements Consumible {
     private Habitacion habitacion;
 
+    public ServicioDeHabitacion(String nombre, double precio) {
+        super();
+    }
+
     @Override
     public double calcularPrecioServicio() {
         return 35000.0;

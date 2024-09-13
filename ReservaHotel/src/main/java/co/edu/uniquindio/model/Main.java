@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Hotel hotel = new Hotel();
+        Hotel hotel = new Hotel("Hotel Mocawa Plaza");
         /*Decision while la cual nos permite seleccionar un item */
         while(true){
             System.out.println("Selecciona una de las siguientes opciones: ");
